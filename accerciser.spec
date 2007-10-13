@@ -1,7 +1,7 @@
 Summary:	An interactive Python tool for querying accessibility information
 Name:		accerciser
 Version:	1.0.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/1.0/%{name}-%{version}.tar.bz2
@@ -13,8 +13,6 @@ BuildRequires:	automake
 BuildRequires:	gnome-doc-utils >= 0.12.0
 BuildRequires:	intltool >= 0.36.2
 BuildRequires:	python >= 1:2.4
-# support for --with-omf in find_lang.sh
-BuildRequires:	rpm-build >= 4.4.9-10
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	gtk+2
 Requires(post,preun):	GConf2
@@ -49,7 +47,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %py_postclean
 
-%find_lang %{name} --with-gnome --with-omf
+%find_lang %{name} --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -74,3 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/*/*
 %{py_sitescriptdir}/accerciser
 %{_sysconfdir}/gconf/schemas/accerciser.schemas
+%{_datadir}/omf/accerciser/accerciser-C.omf
+%lang(ca) %{_datadir}/omf/accerciser/accerciser-ca.omf
+%lang(en_GB) %{_datadir}/omf/accerciser/accerciser-en_GB.omf
+%lang(es) %{_datadir}/omf/accerciser/accerciser-es.omf
+%lang(oc) %{_datadir}/omf/accerciser/accerciser-oc.omf
+%lang(sv) %{_datadir}/omf/accerciser/accerciser-sv.omf
