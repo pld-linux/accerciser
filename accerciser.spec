@@ -1,7 +1,7 @@
 Summary:	An interactive Python tool for querying accessibility information
 Name:		accerciser
 Version:	1.0.1
-Release:	2
+Release:	3
 License:	BSD
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/1.0/%{name}-%{version}.tar.bz2
@@ -72,6 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/*/*
 %{py_sitescriptdir}/accerciser
 %{_sysconfdir}/gconf/schemas/accerciser.schemas
+%dir %{datadir}/omf/accerciser
 %{_datadir}/omf/accerciser/accerciser-C.omf
 %lang(ca) %{_datadir}/omf/accerciser/accerciser-ca.omf
 %lang(en_GB) %{_datadir}/omf/accerciser/accerciser-en_GB.omf
