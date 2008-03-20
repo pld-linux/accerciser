@@ -1,25 +1,29 @@
 Summary:	An interactive Python tool for querying accessibility information
 Summary(pl.UTF-8):	Interaktywne narzędzie w Pythonie do pobierania informacji o dostępności
 Name:		accerciser
-Version:	1.0.1
-Release:	4
+Version:	1.2.0
+Release:	1
 License:	BSD
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	0bfcef80d75ab5772fca31e5021721c4
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/1.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	e4dd607aea8c305ee930c5b09e44681b
 URL:		http://live.gnome.org/Accerciser
-BuildRequires:	GConf2-devel >= 2.20.0
+BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	gnome-doc-utils >= 0.12.0
-BuildRequires:	intltool >= 0.36.2
+BuildRequires:	intltool >= 0.37.0
 BuildRequires:	python >= 1:2.4
+BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
 Requires:	python-gnome
+Requires:	python-gnome-desktop-libwnck
 Requires:	python-ipython
+Requires:	python-pyatspi
 Requires:	python-pygtk-gtk
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %py_postclean
 
-%find_lang %{name} --with-gnome
+%find_lang %{name} --with-gnome --with-omf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,10 +81,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/*/*
 %{py_sitescriptdir}/accerciser
 %{_sysconfdir}/gconf/schemas/accerciser.schemas
-%dir %{_datadir}/omf/accerciser
-%{_datadir}/omf/accerciser/accerciser-C.omf
-%lang(ca) %{_datadir}/omf/accerciser/accerciser-ca.omf
-%lang(en_GB) %{_datadir}/omf/accerciser/accerciser-en_GB.omf
-%lang(es) %{_datadir}/omf/accerciser/accerciser-es.omf
-%lang(oc) %{_datadir}/omf/accerciser/accerciser-oc.omf
-%lang(sv) %{_datadir}/omf/accerciser/accerciser-sv.omf
