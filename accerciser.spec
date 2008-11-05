@@ -15,6 +15,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-doc-utils >= 0.14.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	python >= 1:2.4
+BuildRequires:	rpm-pytonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	gtk+2
