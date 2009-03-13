@@ -4,7 +4,7 @@ Name:		accerciser
 Version:	1.4.0
 Release:	2
 License:	BSD
-Group:		X11/Applications
+Group:		X11/Applications/Accessibility
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/1.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	c46b768906d6a02f83bf96e8843890c1
 URL:		http://live.gnome.org/Accerciser
