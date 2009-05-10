@@ -22,6 +22,7 @@ Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
 Requires:	python-gnome
+Requires:	python-gnome-desktop-librsvg
 Requires:	python-gnome-desktop-libwnck
 Requires:	python-gnome-gconf
 Requires:	python-gtksourceview2
