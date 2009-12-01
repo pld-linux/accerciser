@@ -11,9 +11,12 @@ URL:		http://live.gnome.org/Accerciser
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-doc-utils >= 0.14.0
 BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libxml2-progs
+BuildRequires:	pkgconfig
 BuildRequires:	python >= 1:2.4
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
