@@ -1,12 +1,12 @@
 Summary:	An interactive Python tool for querying accessibility information
 Summary(pl.UTF-8):	Interaktywne narzędzie w Pythonie do pobierania informacji o dostępności
 Name:		accerciser
-Version:	1.8.0
+Version:	1.10.1
 Release:	1
 License:	BSD
 Group:		X11/Applications/Accessibility
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/1.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	ede1d36e9820fa441bcc24cb634d59cc
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/1.10/%{name}-%{version}.tar.bz2
+# Source0-md5:	15b14e77108c2fc9ffbef59e9d6cb5b7
 URL:		http://live.gnome.org/Accerciser
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf
@@ -21,6 +21,7 @@ BuildRequires:	python >= 1:2.4
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	sed >= 4.0
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
@@ -43,6 +44,9 @@ Interaktywny eksplorator dostępności w Pythonie.
 
 %prep
 %setup -q
+
+%{__sed} -i -e 's/en@shaw//' po/LINGUAS
+rm -f po/en@shaw.po
 
 %build
 %{__glib_gettextize}
