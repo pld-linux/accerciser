@@ -45,9 +45,6 @@ Interaktywny eksplorator dostępności w Pythonie.
 %prep
 %setup -q
 
-%{__sed} -i -e 's/en@shaw//' po/LINGUAS
-rm -f po/en@shaw.po
-
 %build
 %{__glib_gettextize}
 %{__intltoolize}
