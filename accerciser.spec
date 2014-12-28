@@ -12,7 +12,7 @@ BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gnome-doc-utils >= 0.14.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libxml2-progs
