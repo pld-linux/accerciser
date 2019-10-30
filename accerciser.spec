@@ -1,19 +1,18 @@
 Summary:	An interactive Python tool for querying accessibility information
 Summary(pl.UTF-8):	Interaktywne narzędzie w Pythonie do pobierania informacji o dostępności
 Name:		accerciser
-Version:	3.22.0
-Release:	4
+Version:	3.34.1
+Release:	1
 License:	BSD
 Group:		X11/Applications/Accessibility
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/3.22/%{name}-%{version}.tar.xz
-# Source0-md5:	a6885691d7639c34ec83d5d6ff5389fe
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/3.34/%{name}-%{version}.tar.xz
+# Source0-md5:	c019462a3c4f509a5709ef631c854f3a
 URL:		https://wiki.gnome.org/Apps/Accerciser
 BuildRequires:	at-spi2-core-devel >= 2.5.2
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	gettext-tools
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	gtk+3-devel >= 3.1.13
-BuildRequires:	intltool >= 0.40.0
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3.2
 BuildRequires:	python3-pygobject3-devel >= 3.0
@@ -50,13 +49,17 @@ Interaktywny eksplorator dostępności w Pythonie.
 %setup -q
 
 %build
-%{__glib_gettextize}
-%{__intltoolize}
+%{__gettextize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
-	am_cv_python_pythondir=%{py3_sitescriptdir}
+	am_cv_python_pythondir=%{py3_sitescriptdir} \
+%if "%{_host_cpu}" != "x32"
+	--host=%{_host} \
+	--build=%{_host}
+%endif
+
 %{__make}
 
 %install
@@ -84,8 +87,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/accerciser
 %{py3_sitescriptdir}/accerciser
 %{_datadir}/accerciser
-%{_datadir}/appdata/org.gnome.accerciser.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.a11y.Accerciser.gschema.xml
+%{_datadir}/metainfo/accerciser.appdata.xml
 %{_desktopdir}/accerciser.desktop
 %{_iconsdir}/hicolor/*x*/apps/accerciser.png
 %{_iconsdir}/hicolor/scalable/apps/accerciser.svg
