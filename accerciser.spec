@@ -1,12 +1,12 @@
 Summary:	An interactive Python tool for querying accessibility information
 Summary(pl.UTF-8):	Interaktywne narzędzie w Pythonie do pobierania informacji o dostępności
 Name:		accerciser
-Version:	3.36.2
+Version:	3.36.3
 Release:	1
 License:	BSD
 Group:		X11/Applications/Accessibility
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/accerciser/3.36/%{name}-%{version}.tar.xz
-# Source0-md5:	76dd2a0dda8c3beb8cdb128643d7b07d
+# Source0-md5:	85801134fc8cf4125fffe5d17a82eecb
 URL:		https://wiki.gnome.org/Apps/Accerciser
 BuildRequires:	appstream-glib-devel
 BuildRequires:	at-spi2-core-devel >= 2.5.2
