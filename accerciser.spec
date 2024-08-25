@@ -1,19 +1,19 @@
 Summary:	An interactive Python tool for querying accessibility information
 Summary(pl.UTF-8):	Interaktywne narzędzie w Pythonie do pobierania informacji o dostępności
 Name:		accerciser
-Version:	3.42.0
+Version:	3.44.1
 Release:	1
 License:	BSD
 Group:		X11/Applications/Accessibility
-Source0:	https://download.gnome.org/sources/accerciser/3.42/%{name}-%{version}.tar.xz
-# Source0-md5:	67dcaed0bee875275578b228bdf342dd
+Source0:	https://download.gnome.org/sources/accerciser/3.44/%{name}-%{version}.tar.xz
+# Source0-md5:	08cb09f9320cf9414ef00f106c7b4093
 URL:		https://wiki.gnome.org/Apps/Accerciser
-BuildRequires:	appstream-glib-devel
+BuildRequires:	AppStream
 BuildRequires:	at-spi2-core-devel >= 2.5.2
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	gtk+3-devel >= 3.24
+BuildRequires:	meson >= 1.0.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3.2
 BuildRequires:	python3-pygobject3-devel >= 3.0
@@ -47,28 +47,31 @@ An interactive Python accessibility explorer.
 %description -l pl.UTF-8
 Interaktywny eksplorator dostępności w Pythonie.
 
+%package -n gnome-shell-extension-%{name}
+Summary:	GNOME Shell extension for Accerciser
+Summary(pl.UTF-8):	Rozszerzenie powłoki GNOME (GNOME Shell) dla Accercisera
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	gnome-shell >= 3
+
+%description -n gnome-shell-extension-%{name}
+GNOME Shell extension for Accerciser.
+
+%description -n gnome-shell-extension-%{name} -l pl.UTF-8
+Rozszerzenie powłoki GNOME (GNOME Shell) dla Accercisera.
+
 %prep
 %setup -q
 
 %build
-%{__gettextize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
-%configure \
-	am_cv_python_pythondir=%{py3_sitescriptdir} \
-%if "%{_host_cpu}" != "x32"
-	--host=%{_host} \
-	--build=%{_host}
-%endif
+%meson build
 
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{name} --with-gnome
 
@@ -85,14 +88,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS README.md
+%doc AUTHORS COPYING ChangeLog MAINTAINERS NEWS NOTICE README.md
 %attr(755,root,root) %{_bindir}/accerciser
 %{py3_sitescriptdir}/accerciser
 %{_datadir}/accerciser
 %{_datadir}/glib-2.0/schemas/org.a11y.Accerciser.gschema.xml
-%{_datadir}/metainfo/accerciser.appdata.xml
+%{_datadir}/metainfo/org.gtk.accerciser.metainfo.xml
 %{_desktopdir}/accerciser.desktop
 %{_iconsdir}/hicolor/*x*/apps/accerciser.png
 %{_iconsdir}/hicolor/scalable/apps/accerciser.svg
 %{_iconsdir}/hicolor/symbolic/apps/accerciser-symbolic.svg
 %{_mandir}/man1/accerciser.1*
+
+%files -n gnome-shell-extension-%{name}
+%defattr(644,root,root,755)
+%{_datadir}/gnome-shell/extensions/accerciser@accerciser.gnome.org
