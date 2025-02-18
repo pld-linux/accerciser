@@ -1,12 +1,12 @@
 Summary:	An interactive Python tool for querying accessibility information
 Summary(pl.UTF-8):	Interaktywne narzędzie w Pythonie do pobierania informacji o dostępności
 Name:		accerciser
-Version:	3.44.1
+Version:	3.46.2
 Release:	1
 License:	BSD
 Group:		X11/Applications/Accessibility
-Source0:	https://download.gnome.org/sources/accerciser/3.44/%{name}-%{version}.tar.xz
-# Source0-md5:	08cb09f9320cf9414ef00f106c7b4093
+Source0:	https://download.gnome.org/sources/accerciser/3.46/%{name}-%{version}.tar.xz
+# Source0-md5:	ce9ee87656fdae982d13f9e9d1212d6d
 URL:		https://wiki.gnome.org/Apps/Accerciser
 BuildRequires:	AppStream
 BuildRequires:	at-spi2-core-devel >= 2.5.2
@@ -19,7 +19,7 @@ BuildRequires:	python3 >= 1:3.2
 BuildRequires:	python3-pygobject3-devel >= 3.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.23
-BuildRequires:	rpmbuild(macros) >= 1.612
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	yelp-tools
@@ -64,14 +64,14 @@ Rozszerzenie powłoki GNOME (GNOME Shell) dla Accercisera.
 %setup -q
 
 %build
-%meson build
+%meson
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %find_lang %{name} --with-gnome
 
